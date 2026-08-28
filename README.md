@@ -212,6 +212,13 @@ and commit a `site/CNAME` file containing just the hostname.
   `index.html` uses local `assets/fonts/`. Worth switching it to `css/fonts.css`.
 - Staff portraits are 272×374 and 404×444, framed `3/4` with
   `object-position: center top`. Match that ratio when swapping a photo in.
+- `assets/video/hero.mp4` is AI-generated (Google Veo) and carries a small
+  “Veo” watermark in the bottom-right of the frame. Desktop uses the clip as a
+  full-bleed `cover` background, which crops that corner away; the mobile 16:9
+  block matches the source aspect ratio, so there it is visible. Kept
+  deliberately. `assets/img/hero-poster.jpg` is a frame of the same clip and
+  carries the same mark — replace both together if the footage is ever swapped
+  for real lab video.
 - `--lab` (`assets/img/lab.webp`) is used three times: hero background,
   full-bleed band, and the share card. Replacing it changes all three.
 - The nav degrades without JS — a `<noscript>` block shows the menu inline.

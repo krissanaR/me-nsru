@@ -1,0 +1,19 @@
+# The single-file design exports this project was built from. site/ supersedes
+# them, they are ~1.6 MB each of base64 that git cannot diff, and three of the
+# four are near-duplicates. Keep them on disk, out of history.
+/ME-Homepage-share_1.html
+/ME-Homepage-share_2.html
+/ME-Homepage-share_2 - Copy.html
+/ME-Homepage-share*.zip
+/export/
+
+# Scratch output from tools/build-og.sh
+/tools/*.png
+
+# OS / editor
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+node_modules/

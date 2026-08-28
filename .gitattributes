@@ -1,0 +1,17 @@
+# Normalise line endings in the repository to LF; Windows checkouts still get
+# CRLF for ordinary text files.
+* text=auto
+
+# Shell scripts must stay LF even on Windows. With CRLF the shebang reads as
+# "/usr/bin/env bash\r" and the script dies with "bad interpreter" on any
+# Linux or macOS clone.
+*.sh text eol=lf
+
+# Never run text conversion over these.
+*.woff2 binary
+*.webp  binary
+*.jpg   binary
+*.jpeg  binary
+*.png   binary
+*.mp4   binary
+*.zip   binary

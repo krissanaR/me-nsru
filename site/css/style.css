@@ -269,7 +269,17 @@ button{font:inherit;color:inherit}
   /* The 100deg scrim was tuned for a wide hero; on a narrow column its
      light end lands under the lede. Go vertical and darker on phones. */
   .hero-scrim{background:linear-gradient(180deg,rgba(22,32,47,.90) 0%,rgba(22,32,47,.82) 45%,rgba(22,32,47,.93) 100%)}
-  .hero-grid{min-height:0}
+  /* The hero video is 736x414. Stretched to cover a ~390x960 portrait hero
+     it shows 23% of the frame at 2.3x upscale — an unreadable blur under an
+     86% scrim, and less legible than the still it replaced. Shown as a 16:9
+     block it renders below native size, so the whole composition survives.
+     z-index lifts it above .hero-scrim, which is absolute and paints later. */
+  .hero{display:flex;flex-direction:column}
+  .hero-grid{order:1;min-height:0}
+  .hero-media{order:2;position:relative;z-index:1;inset:auto;
+    width:auto;height:auto;align-self:stretch;aspect-ratio:16/9;
+    margin:0 var(--gut) clamp(40px,8vw,64px);
+    border:1px solid rgba(255,255,255,.22)}
   .hero-side{justify-content:stretch;padding-top:0;padding-bottom:clamp(40px,8vw,64px)}
   .card-glass{max-width:none;width:100%}
   .stats li{border-right:0;border-bottom:1px solid rgba(255,255,255,.12);

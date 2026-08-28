@@ -39,12 +39,16 @@
   var v = document.getElementById('heroVideo');
   if (v) {
     var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection,
-        saveData = !!(conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || ''))),
-        reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-        small = window.matchMedia('(max-width: 860px)').matches;
+        effective = (conn && conn.effectiveType) || '',
+        saveData = !!(conn && conn.saveData),
+        slow = /(^|-)[23]g$/.test(effective),   // slow-2g, 2g, 3g
+        reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* Phones, data-saver and reduced-motion keep the poster frame only. */
-    if (!saveData && !reduce && !small) {
+    /* Data-saver, reduced-motion and anything below 4G keep the poster frame
+       only — phones included, where the video is a 16:9 block rather than a
+       background. Safari implements no Network Information API, so
+       effectiveType is '' there and the source loads regardless of speed. */
+    if (!saveData && !reduce && !slow) {
       var tries = 0, timer = null;
       var play = function () {
         var p = v.play();

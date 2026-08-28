@@ -1,5 +1,7 @@
 # ME Homepage — สาขาวิชาวิศวกรรมเครื่องกล มรภ.นครสวรรค์
 
+**เว็บจริง: <https://krissanar.github.io/me-nsru/>**
+
 Static site split out of the single-file export `export/index.html`
 (1.53 MB, everything inlined as base64).
 
@@ -177,23 +179,24 @@ One-time setup on GitHub, after the first push: **Settings → Pages → Source*
 must be set to **GitHub Actions** (not "Deploy from a branch"). Without that the
 workflow runs but nothing is served.
 
-## Still outstanding
+## Site URL
 
-**Before the site goes live**, two things need the real domain:
+The site is served from a subpath, `https://krissanar.github.io/me-nsru/`.
+Every internal link and asset reference is relative, so the subpath needs no
+`<base>` tag and nothing breaks — but three tags do carry the absolute URL and
+have to move together if the site ever changes address:
 
-1. `og:image` is a relative path. Facebook usually resolves it, Line often does
-   not. Change it to the full URL and add `og:url`:
-   ```html
-   <meta property="og:image" content="https://โดเมนจริง/assets/img/og-cover.jpg">
-   <meta property="og:url"   content="https://โดเมนจริง/">
-   ```
-   There is a comment in `index.html` marking the spot.
-2. The brand logo in the header still points at `href="#"` — the only remaining
-   placeholder in the file.
+| tag | why it cannot be relative |
+|---|---|
+| `og:image` | Line will not resolve a relative path; Facebook only sometimes does |
+| `og:url` | names the canonical target of a share |
+| `link rel="canonical"` | tells search engines which URL is authoritative |
 
-After deploying, run the page through
-[Facebook's Sharing Debugger](https://developers.facebook.com/tools/debug/) once
-to prime the card — both Facebook and Line cache aggressively.
+All three sit together at the top of `index.html`.
+
+If IT ever points a university domain (say `me.nsru.ac.th`) at GitHub Pages,
+change those three, set the domain under **Settings → Pages → Custom domain**,
+and commit a `site/CNAME` file containing just the hostname.
 
 ## Notes
 

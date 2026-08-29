@@ -1,6 +1,6 @@
-# ME Homepage — สาขาวิชาวิศวกรรมเครื่องกล มรภ.นครสวรรค์
-
-**เว็บจริง: <https://krissanar.github.io/me-nsru/>**
+# ME ⚠️ **Repo นี้เลิกใช้แล้ว** ย้ายไปที่ 
+> https://github.com/engnsru/me-nsru แทน
+> เว็บไซต์ปัจจุบัน: https://engnsru.github.io/me-nsru/
 
 Static site split out of the single-file export `export/index.html`
 (1.53 MB, everything inlined as base64).
